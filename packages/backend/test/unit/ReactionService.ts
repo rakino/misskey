@@ -80,15 +80,15 @@ describe('ReactionService', () => {
 		});
 
 		test('fallback - null', () => {
-			assert.strictEqual(reactionService.normalize(null), '❤');
+			assert.strictEqual(reactionService.normalize(null), '⭐');
 		});
 
 		test('fallback - empty', () => {
-			assert.strictEqual(reactionService.normalize(''), '❤');
+			assert.strictEqual(reactionService.normalize(''), '⭐');
 		});
 
 		test('fallback - unknown', () => {
-			assert.strictEqual(reactionService.normalize('unknown'), '❤');
+			assert.strictEqual(reactionService.normalize('unknown'), '⭐');
 		});
 	});
 
