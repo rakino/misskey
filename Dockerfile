@@ -32,7 +32,8 @@ COPY --link ["packages/misskey-bubble-game/package.json", "./packages/misskey-bu
 ARG NODE_ENV=production
 
 RUN --mount=type=cache,target=/root/.local/share/pnpm/store,sharing=locked \
-	pnpm i --frozen-lockfile --aggregate-output
+	pnpm i --frozen-lockfile --aggregate-output && \
+        cd packages/frontend && pnpm i --save nanoid
 
 COPY --link . ./
 
