@@ -13,9 +13,9 @@ SPDX-License-Identifier: AGPL-3.0-only
 	:tabindex="isDeleted ? '-1' : '0'"
 >
 	<div v-if="appearNote.reply && appearNote.reply.replyId">
-		<div v-if="!conversationLoaded" style="padding: 16px">
+		<!-- <div v-if="!conversationLoaded" style="padding: 16px">
 			<MkButton style="margin: 0 auto;" primary rounded @click="loadConversation">{{ i18n.ts.loadConversation }}</MkButton>
-		</div>
+		</div> -->
 		<MkNoteSub v-for="note in conversation" :key="note.id" :class="$style.replyToMore" :note="note"/>
 	</div>
 	<MkNoteSub v-if="appearNote.reply" :note="appearNote.reply" :class="$style.replyTo"/>
@@ -163,9 +163,9 @@ SPDX-License-Identifier: AGPL-3.0-only
 	</div>
 	<div>
 		<div v-if="tab === 'replies'">
-			<div v-if="!repliesLoaded" style="padding: 16px">
+			<!-- <div v-if="!repliesLoaded" style="padding: 16px">
 				<MkButton style="margin: 0 auto;" primary rounded @click="loadReplies">{{ i18n.ts.loadReplies }}</MkButton>
-			</div>
+			</div> -->
 			<MkNoteSub v-for="note in replies" :key="note.id" :note="note" :class="$style.reply" :detail="true"/>
 		</div>
 		<div v-else-if="tab === 'renotes'" :class="$style.tab_renotes">
@@ -528,10 +528,10 @@ function blur() {
 	rootEl.value?.blur();
 }
 
-const repliesLoaded = ref(false);
+// const repliesLoaded = ref(false);
 
 function loadReplies() {
-	repliesLoaded.value = true;
+	// repliesLoaded.value = true;
 	misskeyApi('notes/children', {
 		noteId: appearNote.value.id,
 		limit: 30,
@@ -540,10 +540,10 @@ function loadReplies() {
 	});
 }
 
-const conversationLoaded = ref(false);
+// const conversationLoaded = ref(false);
 
 function loadConversation() {
-	conversationLoaded.value = true;
+	// conversationLoaded.value = true;
 	if (appearNote.value.replyId == null) return;
 	misskeyApi('notes/conversation', {
 		noteId: appearNote.value.replyId,
@@ -551,6 +551,12 @@ function loadConversation() {
 		conversation.value = res.reverse();
 	});
 }
+
+// Extend note content automatically (no manual click)
+onMounted(() => {
+	loadReplies();
+	loadConversation();
+});
 </script>
 
 <style lang="scss" module>
