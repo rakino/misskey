@@ -240,6 +240,7 @@ SPDX-License-Identifier: AGPL-3.0-only
 
 <script lang="ts" setup>
 import { inject, provide, ref, useTemplateRef, markRaw, computed } from 'vue';
+import { onMounted } from 'vue';
 import * as Misskey from 'misskey-js';
 import { useNote } from '@/composables/use-note.js';
 import { prefer } from '@/preferences.js';
@@ -397,6 +398,12 @@ const keymap = {
 		callback: () => blur(),
 	},
 } as const satisfies Keymap;
+
+// Extend note content automatically (no manual click)
+onMounted(() => {
+	loadReplies();
+	loadConversation();
+});
 </script>
 
 <style lang="scss" module>
