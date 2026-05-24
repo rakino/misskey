@@ -283,6 +283,7 @@ export async function mainBoot() {
 		//}
 		//miLocalStorage.setItem('lastUsed', Date.now().toString());
 
+		/* // 不要一上来就弹捐款消息，弄得像是拦路抢劫一样
 		const latestDonationInfoShownAt = miLocalStorage.getItem('latestDonationInfoShownAt');
 		const neverShowDonationInfo = miLocalStorage.getItem('neverShowDonationInfo');
 		if (neverShowDonationInfo !== 'true' && (createdAt.getTime() < (Date.now() - (1000 * 60 * 60 * 24 * 3))) && !window.location.pathname.startsWith('/miauth')) {
@@ -292,6 +293,7 @@ export async function mainBoot() {
 				});
 			}
 		}
+		*/
 
 		const modifiedVersionMustProminentlyOfferInAgplV3Section13Read = miLocalStorage.getItem('modifiedVersionMustProminentlyOfferInAgplV3Section13Read');
 		if (modifiedVersionMustProminentlyOfferInAgplV3Section13Read !== 'true' && instance.repositoryUrl !== 'https://github.com/misskey-dev/misskey') {
