@@ -239,7 +239,7 @@ SPDX-License-Identifier: AGPL-3.0-only
 </template>
 
 <script lang="ts" setup>
-import { computed, inject, markRaw, provide, ref, useTemplateRef } from 'vue';
+import { computed, onMounted, inject, markRaw, provide, ref, useTemplateRef } from 'vue';
 import * as mfm from 'mfm-js';
 import * as Misskey from 'misskey-js';
 import { isLink } from '@@/js/is-link.js';
@@ -653,6 +653,12 @@ function loadConversation() {
 		conversation.value = res.reverse();
 	});
 }
+
+// Extend note content automatically (no manual click)
+onMounted(() => {
+	loadReplies();
+	loadConversation();
+});
 </script>
 
 <style lang="scss" module>
